@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import Login from "./components/login/Login";
+import Filebox from "./components/filebox/Filebox";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./index.css";
 
+const App = () => {
+  return (
+    <div className="App">
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/filebox/user/:userID" component={Filebox} />
+        <Route path="*" component={() => "404 NOT FOUND"} />
+      </Switch>
+    </div>
+  );
+}
+export default App;
+
+const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </BrowserRouter>,
+  rootElement
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
